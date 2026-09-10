@@ -1,0 +1,20 @@
+[project]
+name = "pinns"
+version = "0.1.0"
+description = "个人科研计算：用 PINNs 求解一维时空可积方程"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "torch==2.5.1",
+    "numpy==2.0.1",
+    "scipy==1.14.1",
+    "matplotlib==3.9.2",
+]
+
+# PyTorch 从 CUDA 12.4 wheel 源安装（见 reflector-v3.md 第 18 节）。
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu124" }

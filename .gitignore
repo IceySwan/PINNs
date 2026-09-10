@@ -20,3 +20,32 @@ node_modules/
 # 忽略 Python 缓存
 __pycache__/
 *.pyc
+
+# 实验输出与历史产物
+/runs/
+/output/
+/archive/
+/Archive/
+
+# MATLAB 参考数据、图形与自动保存文件
+*.mat
+*.fig
+*.asv
+
+# 训练权重与生成的图片
+*.pt
+*.pth
+*.ckpt
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# 本地协作说明与重构讨论文档
+AGENTS.md
+/reflector*.md
+/reflcetor*.md
+
+# 忽略 MATLAB 与 uv 的本地缓存
+.matlab-pref/
+.uv-cache-scratch/

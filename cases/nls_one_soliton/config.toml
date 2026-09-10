@@ -1,0 +1,44 @@
+# nls_one_soliton case 配置。
+#
+# 数值设置对应 reflector-v3.md 第 10.1 节的旧版基线：本轮用于核对流程与
+# 数值设置的一致性，精度调参在重构验收后用新 tag 单独开展。
+
+[data]
+# 参考数据路径按仓库根目录解析，由 cases/nls_one_soliton/matlab/generate.m 生成。
+file = "data/nls_one_soliton.mat"
+
+[sampling]
+n_ic = 50        # 初值点数量，x 坐标取自参考网格
+n_bc = 25        # 每侧边界点数量，左右边界共享同一组时刻
+n_f = 10000      # 独立 LHS 配点数量
+seed = 1234
+
+[model]
+hidden_layers = 10   # 隐藏层数量（旧 n_layer=9 加上首个隐藏层）
+width = 40
+activation = "tanh"
+dtype = "float32"
+
+[loss]
+w_ic = 0.5
+w_bc = 0.25
+w_pde = 1.0
+
+[adam]
+lr = 1.0e-3
+steps = 2000
+
+[lbfgs]
+lr = 1.0
+max_iter = 50000
+max_eval = 50000
+history_size = 50
+tolerance_grad = 1.0e-6
+tolerance_change = 2.220446049250313e-16
+line_search_fn = "strong_wolfe"
+
+[logging]
+every = 1000     # Adam 每 N 次更新、L-BFGS 每 N 次 closure 评估输出 total_loss/ic/bc/pde
+
+[experiment]
+tag = "baseline"
